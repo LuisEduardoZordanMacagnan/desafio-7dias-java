@@ -132,15 +132,7 @@ public class contadorParesImpares extends JFrame {
 		JButton btnContar = new JButton("Contar");
 		btnContar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String txts[] = new String[8];
-				txts[0] = txt1.getText();
-				txts[1] = txt2.getText();
-				txts[2] = txt3.getText();
-				txts[3] = txt4.getText();
-				txts[4] = txt5.getText();
-				txts[5] = txt6.getText();
-				txts[6] = txt7.getText();
-				txts[7] = txt8.getText();
+				String txts[] = {txt1.getText(), txt2.getText(), txt3.getText(), txt4.getText(), txt5.getText(), txt6.getText(), txt7.getText(), txt8.getText()};
 				lbPar.setText(String.valueOf(mostrarPares(txts)));
 				lbImpar.setText(String.valueOf(mostrarImpares(txts)));
 			}
