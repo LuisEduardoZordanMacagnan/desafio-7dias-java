@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -32,21 +33,32 @@ public class CalculadoraJava extends JFrame {
 			}
 		});
 	}
-	public static Double calcular(Double[] n, int calc) {
+	public static Double calcular(String[] n, int calc) {
 		Double resp=null;
-		switch(calc) {
-		case 1:
-			resp=n[0]+n[1];
-			break;
-		case 2:
-			resp=n[0]-n[1];
-			break;
-		case 3:
-			resp=n[0]*n[1];
-			break;
-		case 4:
-			resp=n[0]/n[1];
-			break;
+		Double[] num = new Double[n.length];
+		for (int i = 0; i < n.length; i++) {
+			if(!n[i].isEmpty()){
+				num[i]=Double.valueOf(n[i]);
+				if((i+1)==n.length) {
+					switch(calc) {
+					case 1:
+						resp=num[0]+num[1];
+						break;
+					case 2:
+						resp=num[0]-num[1];
+						break;
+					case 3:
+						resp=num[0]*num[1];
+						break;
+					case 4:
+						resp=num[0]/num[1];
+						break;
+					}
+				}
+			}else {
+				JOptionPane.showMessageDialog(null, "Valor vazio");
+				break;
+			}
 		}
 		return resp;
 	}
@@ -80,7 +92,7 @@ public class CalculadoraJava extends JFrame {
 		JButton btnMais = new JButton("+");
 		btnMais.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Double[] n = {Double.valueOf(txt1.getText()), Double.valueOf(txt2.getText())};
+				String[] n = {txt1.getText(), txt2.getText()};
 				int calc = 1;
 				lblResultado.setText(String.valueOf(calcular(n, calc)));
 			}
@@ -91,7 +103,7 @@ public class CalculadoraJava extends JFrame {
 		JButton btnMenos = new JButton("-");
 		btnMenos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Double[] n = {Double.valueOf(txt1.getText()), Double.valueOf(txt2.getText())};
+				String[] n = {txt1.getText(), txt2.getText()};
 				int calc = 2;
 				lblResultado.setText(String.valueOf(calcular(n, calc)));
 			}
@@ -102,7 +114,7 @@ public class CalculadoraJava extends JFrame {
 		JButton btnMultiplicacao = new JButton("x");
 		btnMultiplicacao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Double[] n = {Double.valueOf(txt1.getText()), Double.valueOf(txt2.getText())};
+				String[] n = {txt1.getText(), txt2.getText()};
 				int calc = 3;
 				lblResultado.setText(String.valueOf(calcular(n, calc)));
 			}
@@ -113,7 +125,7 @@ public class CalculadoraJava extends JFrame {
 		JButton btnDivisao = new JButton("/");
 		btnDivisao.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Double[] n = {Double.valueOf(txt1.getText()), Double.valueOf(txt2.getText())};
+				String[] n = {txt1.getText(), txt2.getText()};
 				int calc = 4;
 				lblResultado.setText(String.valueOf(calcular(n, calc)));
 			}
